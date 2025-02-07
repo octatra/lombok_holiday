@@ -113,7 +113,7 @@
                     <div class="col-md-4 ftco-animate">
                         <div class="project-wrap">
                             <a href="{{ route('detail_destinasi', $item->slug_url) }}" class="img"
-                                style="background-image: url({{ asset($item->gambar) }});">
+                                style="background-image: url({{ asset('public/' . $item->gambar) }});">
                                 <span class="price">Rp. {{ number_format($item->harga, 2, ',', '.') }} / Orang</span>
                             </a>
                             <div class="text p-4">

@@ -62,7 +62,7 @@ class KategoriPaketController extends Controller
     {
         // Validasi input
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama_kategori' => 'required|string|max:255',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -80,7 +80,7 @@ class KategoriPaketController extends Controller
                 unlink(public_path($kategori->gambar));
             }
             // Simpan gambar baru
-            $nama_gambar = time() . '.' . $request->gambar->extension();
+            $nama_gambar = 'assets/kategori/' . time() . '.' . $request->gambar->extension();
             $request->gambar->move(public_path('assets/kategori/'), $nama_gambar);
         } else {
             // Jika tidak ada gambar baru, gunakan gambar lama
@@ -89,8 +89,8 @@ class KategoriPaketController extends Controller
 
         // Proses penyimpanan
         $data = [
-            'nama' => $request->nama,
-            'gambar' => 'public/assets/kategori/' . $nama_gambar,
+            'nama' => $request->nama_kategori,
+            'gambar' =>  $nama_gambar,
             'deskripsi' => $request->deskripsi,
             'slug_url' => $slug_name,
         ];

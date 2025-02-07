@@ -37,7 +37,8 @@
                                         <tr>
                                             <td>{{ $indeks + 1 }}</td>
                                             <td>{{ $item->nama }}</td>
-                                            <td> <a href="{{ asset($item->gambar) }}" target="_blank">Lihat Gambar</a>
+                                            <td> <a href="{{ asset('public/' . $item->gambar) }}" target="_blank">Lihat
+                                                    Gambar</a>
                                             </td>
                                             <td>
                                                 <button onclick="confirmDelete({{ $item->id }})"
@@ -73,7 +74,7 @@
                 cancelButtonText: "Batal"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "/admin/paket-wisata/delet/" + id;
+                    window.location.href = "/admin/kategori-paket/delet/" + id;
                 }
             });
         }

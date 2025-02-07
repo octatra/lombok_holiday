@@ -40,7 +40,8 @@
                                             <td>{{ $item->nama_paket }}</td>
                                             <td>{{ $item->kategoris->nama }}</td>
                                             <td>{{ $item->harga }}</td>
-                                            <td> <a href="{{ asset($item->gambar) }}" target="_blank">Lihat Gambar</a>
+                                            <td> <a href="{{ asset('public/' . $item->gambar) }}" target="_blank">Lihat
+                                                    Gambar</a>
                                             <td>
                                                 <button onclick="confirmDelete({{ $item->id }})"
                                                     class="btn btn-danger">Delete</button>

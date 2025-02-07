@@ -65,7 +65,7 @@
                 <div class="col-md-12 order-md-last heading-section pl-md-5 ftco-animate d-flex align-items-center">
                     <div class="w-100" style="color: black; text-align: justify">
                         <h2 class="mb-4">{{ $paket->nama_paket }}</h2>
-                        <img src="{{ asset($paket->gambar) }}" alt="" srcset="" width="80%">
+                        <img src="{{ asset('public/' . $paket->gambar) }}" alt="" srcset="" width="80%">
                         <div class="mt-4 ql-editor">
                             {!! $paket->deskripsi !!}
                         </div>
