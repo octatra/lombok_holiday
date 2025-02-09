@@ -5,6 +5,9 @@
 @endsection
 
 @section('meta')
+    <title>{{ $paket->nama_paket }}</title>
+
+
     <meta name="description" content="{{ $meta['description'] }}" />
     <link rel="canonical" href="{{ $meta['url'] }}" />
 
@@ -66,10 +69,8 @@
                     <div class="w-100" style="color: black; text-align: justify">
                         <h2 class="mb-4">{{ $paket->nama_paket }}</h2>
                         <img src="{{ asset('public/' . $paket->gambar) }}" alt="" srcset="" width="80%">
-                        <div class="mt-4 ql-editor">
+                        <div class="ql-editor p-0">
                             {!! $paket->deskripsi !!}
-                        </div>
-                        <div class="mt-4 ql-editor">
                             {!! $paket->fasilitas !!}
                         </div>
                     </div>

@@ -47,7 +47,8 @@ class PaketwisataController extends Controller
         );
         // dd($request);
 
-        $slug_name = strtolower(str_replace(' ', '_', $request->nama_paket));
+        $slug_name = strtolower(str_replace([' ', '$', '%', '&', '/', '\\'], '-', $request->nama_paket));
+        $slug_name = trim($slug_name, '-');
 
         $nama_gambar = time() . '.' . $request->gambar->extension();
         $request->gambar->move(public_path('assets/paket/'), $nama_gambar);
@@ -114,6 +115,13 @@ class PaketwisataController extends Controller
         } else {
             // Jika tidak ada gambar baru, gunakan gambar lama
             $nama_gambar = $paket_wisata->gambar;
+        }
+
+        if ($request->nama_paket == $paket_wisata->nama_paket) {
+            $slug_name = strtolower(str_replace([' ', '$', '%', '&', '/', '\\'], '-', $request->nama_paket));
+            $slug_name = trim($slug_name, '-');
+        } else {
+            $slug_name = $paket_wisata->nama_paket;
         }
 
         $paket_wisata->update([

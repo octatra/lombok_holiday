@@ -226,7 +226,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="{{ asset('frontend/asset/images/lht/IMG_20141224_144929.jpg') }}"
+                    <img src="{{ asset('frontend/asset/images/lht/Lombok_Holiday_Travel.jpg') }}"
                         class="services services-1 color-1 d-block alt="" srcset=""
                         style="background: none; padding: 0">
                     {{-- <div class="row">
