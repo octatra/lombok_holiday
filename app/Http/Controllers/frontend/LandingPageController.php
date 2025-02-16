@@ -24,7 +24,22 @@ class LandingPageController extends Controller
 
     public function destinasi()
     {
-        $data = PaketWisata::all();
+        $data = PaketWisata::paginate(2); // 5 item per halaman
+        return view('frontend.destinasi', compact('data'));
+    }
+
+    public function destinasiKategori($kategori)
+    {
+        // Cari ID kategori berdasarkan nama yang dikirimkan di URL
+        $kategoriData = Kategori::where('nama', $kategori)->first();
+
+        if (!$kategoriData) {
+            abort(404, 'Kategori tidak ditemukan.');
+        }
+
+        // Ambil semua paket wisata berdasarkan kategori_id
+        $data = PaketWisata::where('kategori_id', $kategoriData->id)->paginate(5);
+
         return view('frontend.destinasi', compact('data'));
     }
 

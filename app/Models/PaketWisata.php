@@ -11,11 +11,6 @@ class PaketWisata extends Model
     protected $table = 'paket_wisata';
     protected $guarded = [];
 
-    public function fotos()
-    {
-        return $this->hasMany(FotoPaketWisata::class);
-    }
-
     public function kategoris()
     {
         return $this->belongsTo(Kategori::class, 'kategori_id');

@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/home', [LandingPageController::class, 'home'])->name('home');
 Route::get('/tentang-kami', [LandingPageController::class, 'about'])->name('about');
 Route::get('/destinasi', [LandingPageController::class, 'destinasi'])->name('destinasi');
+Route::get('/destinasi/{kategori}', [LandingPageController::class, 'destinasiKategori'])->name('destinasi.kategori');
 Route::get('/hotel', [LandingPageController::class, 'hotel'])->name('hotel');
 Route::get('/contact', [LandingPageController::class, 'contact'])->name('contact');
 Route::get('/tes', [LandingPageController::class, 'tes'])->name('tes');

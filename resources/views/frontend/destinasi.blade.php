@@ -25,7 +25,7 @@
         </div>
     </section>
 
-    <section class="ftco-section ftco-no-pb">
+    {{-- <section class="ftco-section ftco-no-pb">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -104,44 +104,54 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="ftco-section">
         <div class="container">
             <div class="row">
-                @foreach ($data as $item)
-                    <div class="col-md-4 ftco-animate">
-                        <div class="project-wrap">
-                            <a href="{{ route('detail_destinasi', $item->slug_url) }}" class="img"
-                                style="background-image: url({{ asset('public/' . $item->gambar) }});">
-                                <span class="price">Rp. {{ number_format($item->harga, 2, ',', '.') }} / Orang</span>
-                            </a>
-                            <div class="text p-4">
-                                <span class="days">{{ $item->kategoris->nama }}</span>
-                                <h3><a href="{{ route('detail_destinasi', $item->slug_url) }}">{{ $item->nama_paket }}</a>
-                                </h3>
-                                {{-- <p class="location"><span class="fa fa-map-marker"></span> Banaue, Ifugao, Philippines</p> --}}
-                                {{-- <ul>
-                    <li><span class="flaticon-shower"></span>2</li>
-                    <li><span class="flaticon-king-size"></span>3</li>
-                    <li><span class="flaticon-mountains"></span>Near Mountain</li>
-                </ul> --}}
+                @if ($data->isEmpty())
+                    <p>Tidak ada paket wisata dalam kategori ini.</p>
+                @else
+                    @foreach ($data as $item)
+                        <div class="col-md-4 ftco-animate">
+                            <div class="project-wrap">
+                                <a href="{{ route('detail_destinasi', $item->slug_url) }}" class="img"
+                                    style="background-image: url({{ asset('public/' . $item->gambar) }});">
+                                    <span class="price">Rp. {{ number_format($item->harga, 2, ',', '.') }} / Orang</span>
+                                </a>
+                                <div class="text p-4">
+                                    <span class="days">{{ $item->kategoris->nama }}</span>
+                                    <h3><a
+                                            href="{{ route('detail_destinasi', $item->slug_url) }}">{{ $item->nama_paket }}</a>
+                                    </h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
+            <!-- Tambahkan Pagination -->
             <div class="row mt-5">
                 <div class="col text-center">
                     <div class="block-27">
                         <ul>
-                            <li><a href="#">&lt;</a></li>
-                            <li class="active"><span>1</span></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&gt;</a></li>
+                            @if ($data->onFirstPage())
+                                <li class="disabled"><span>&lt;</span></li>
+                            @else
+                                <li><a href="{{ $data->previousPageUrl() }}">&lt;</a></li>
+                            @endif
+
+                            @foreach ($data->getUrlRange(1, $data->lastPage()) as $page => $url)
+                                <li class="{{ $data->currentPage() == $page ? 'active' : '' }}">
+                                    <a href="{{ $url }}">{{ $page }}</a>
+                                </li>
+                            @endforeach
+
+                            @if ($data->hasMorePages())
+                                <li><a href="{{ $data->nextPageUrl() }}">&gt;</a></li>
+                            @else
+                                <li class="disabled"><span>&gt;</span></li>
+                            @endif
                         </ul>
                     </div>
                 </div>

@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <section class="ftco-section ftco-no-pb ftco-no-pt" style="background: rgb(246, 243, 243)">
+    {{-- <section class="ftco-section ftco-no-pb ftco-no-pt" style="background: rgb(246, 243, 243)">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -208,7 +208,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="ftco-section services-section" style="background: rgb(246, 243, 243)">
         <div class="container">
@@ -301,7 +301,7 @@
                         @foreach ($kategori as $item)
                             <div class="item">
                                 <div class="project-destination">
-                                    <a href="#" class="img"
+                                    <a href="{{ route('destinasi.kategori', $item->nama) }}" class="img"
                                         style="background-image: url({{ asset('public/' . $item->gambar) }});">
                                         <div class="text">
                                             <h3>{{ $item->nama }}</h3>
